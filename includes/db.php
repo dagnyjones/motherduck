@@ -1,6 +1,6 @@
 <?php
 
-class Dbh {
+/* class Dbh {
 
     private $servername;
     private $username;
@@ -17,12 +17,12 @@ class Dbh {
 
         return $conn;
     }
-}
+} */
 
 
- $conn = mysqli_connect("localhost", "root", "123456", "Motherduck"); 
+// $conn = mysqli_connect("localhost", "root", "123456", "Motherduck"); 
 
-//$conn = mysqli_connect("dagnyjons.com.mysql", "dagnyjons_commotherduck", "Spangsbjerg101", "dagnyjons_commotherduck");
+$conn = mysqli_connect("dagnyjons.com.mysql", "dagnyjons_commotherduck", "Spangsbjerg101", "dagnyjons_commotherduck");
 
 
 ?>

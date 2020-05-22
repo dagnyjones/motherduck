@@ -1,8 +1,8 @@
 <?php
 
-$db = mysqli_connect("localhost", "root", "123456", "Motherduck");
+//$db = mysqli_connect("localhost", "root", "123456", "Motherduck");
 
-//$db = mysqli_connect("dagnyjons.com.mysql", "dagnyjons_commotherduck", "Spangsbjerg101", "dagnyjons_commotherduck");
+$db = mysqli_connect("dagnyjons.com.mysql", "dagnyjons_commotherduck", "Spangsbjerg101", "dagnyjons_commotherduck");
 
 function getRealIpUser(){
     switch(true){
