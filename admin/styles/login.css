@@ -1,0 +1,38 @@
+body {
+    padding-top: 10%;
+    background-image: url("../admin_images/background.jpg");
+    background-size: cover;
+}
+
+.form-login {
+    max-width: 350px;
+    padding: 40px;
+    border-radius: 40px;
+    background: white;
+    margin: 0 auto;
+}
+
+.form-login .form-login-heading {
+    color: #2d2d2d;
+    text-align: center;
+}
+
+.form-login .form-control {
+    position: relative;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-login input[type="text"] {
+    margin-bottom: 5px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.form-login input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}

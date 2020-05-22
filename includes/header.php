@@ -1,10 +1,52 @@
 <?php
+  
+ session_start();
 
-include("includes/db.php");
+ 
+
+  include("includes/db.php");
 include("functions/functions.php");
-
 ?>
 
+<?php
+
+if(isset($_GET['pro_id'])) {
+    $product_id = $_GET['pro_id'];
+
+    $get_product = "SELECT * FROM products WHERE product_id='$product_id'";
+
+    $run_product = mysqli_query($conn, $get_product);
+
+    $row_product = mysqli_fetch_array($run_product);
+
+    $p_cat_id = $row_product['p_cat_id'];
+
+    $pro_title = $row_product['product_title'];
+
+    $pro_price = $row_product['product_price'];
+
+    $pro_desc = $row_product['product_desc'];
+
+    $pro_img1 = $row_product['product_img1'];
+
+    $pro_img2 = $row_product['product_img2'];
+
+    $pro_img3 = $row_product['product_img3'];
+
+    $get_p_cat = "SELECT * FROM product_categories WHERE p_cat_id='$p_cat_id'";
+
+    $run_p_cat = mysqli_query($conn, $get_p_cat);
+
+    $row_p_cat = mysqli_fetch_array($run_p_cat);
+
+    $p_cat_title = $row_p_cat['p_cat_title'];
+
+
+
+
+}
+
+?>
 
 
 
@@ -32,18 +74,46 @@ include("functions/functions.php");
     <div class="container">
 
         <div class="col-md-6 offer">
-            <a href="#" class="btn btn-success btn-sm">Welcome</a>
-            <a href="checkout.php">Shopping Cart</a>
+            
+
+            <?php
+
+            if(!isset($_SESSION['customer_email'])) {
+
+                echo "WELCOME: GUEST";
+            
+            }
+            else {
+                echo "WELCOME: " . $_SESSION['customer_email'] . "";
+            }
+
+            ?>
+
+
+
+            
+            <a href="checkout.php"><?php items(); ?> IN CART // TOTAL PRICE: <?php total_price(); ?> </a>
         </div>
 
         <div class="col-md-6">
             <ul class="menu">
                 <li>
-                   <a href="Customer_register.php">REGISTER</a>
+                   <a href="customer_register.php">REGISTER</a>
                 </li>
                 
                 <li>
-                    <a href="customer/my_account.php">MY ACCOUNT</a>
+                   <?php 
+
+                   if(!isset($_SESSION['customer_email'])){
+
+                    echo "<a href='checkout.php'>MY ACCOUNT</a>";
+                   }
+                   else {
+
+                    echo "<a href='customer/checkout.php'>MY ACCOUNT</a>";
+                   }               
+                   
+                   ?>
                 </li>
 
                 <li>
@@ -52,7 +122,23 @@ include("functions/functions.php");
                 </li>
 
                 <li>
-                    <a href="checkout.php">LOGIN</a>
+                    <a href="checkout.php">
+
+                    <?php
+
+                    if(!isset($_SESSION['customer_email'])) {
+
+                        echo "<a href='checkout.php'> LOGIN </a>";
+
+                    }
+                    else {
+                        echo "<a href='logout.php'> LOGOUT </a>";
+                    }
+
+                    ?>
+
+
+                    </a>
 
                 </li>
 
@@ -112,7 +198,28 @@ include("functions/functions.php");
                     if($active=='ACCOUNT') 
                     echo "active"; 
                     ?>">
-                        <a href="customer_register.php">MY ACCOUNT</a>
+                        <?php 
+
+                        if(!isset($_SESSION['customer_email'])) {
+                            echo "
+
+                            <a href='checkout.php'>
+                            MY ACCOUNT
+                            </a>                            
+                            
+                            ";
+                        }
+                        else {
+                            echo "
+
+                            <a href='customer/my_account.php?my_orders'>
+                            MY ACCOUNT
+                            </a>  
+                            ";                         
+                            
+                        }                      
+                        
+                        ?>
                     </li>
                     <li class="
                     <?php 
@@ -135,7 +242,7 @@ include("functions/functions.php");
             <a href="cart.php" class="btn navbar-btn btn-primary right">
 
                 <i class="fa fa-shopping-cart"></i>
-                <span>4 items?</span>
+                <span><?php items(); ?> ITEMS IN YOUR CART</span>
 
             </a>
 
@@ -178,3 +285,57 @@ include("functions/functions.php");
         </div>
     </div>
 </div>
+
+<!-- <div class='col-md-4 col-sm-6 center-responsive'>
+
+<div class='product'>
+
+<a href='details.php?pro_id=$pro_id'>
+
+<img class='img-responsive' src='admin/product_images/$pro_img1'>
+
+</a>
+
+<div class='text'>
+
+<h3>
+
+<a href='details.php?pro_id=$pro_id'>
+
+$pro_title
+
+</a>
+
+</h3>
+
+<p class='price'>
+
+$$pro_price
+
+</p>
+
+<p class='buttons'>
+
+<a class='btn btn-primary' href='details.php?pro_id=$pro_id'>
+
+VIEW DETAILS
+
+</a>
+
+<a class='btn btn-primary' href='details.php?pro_id=$pro_id'>
+
+ADD TO CART
+
+</a>
+
+
+</p>
+
+
+
+</div>
+
+
+</div>
+
+</div> -->

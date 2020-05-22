@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $active='ACCOUNT';
 include("includes/header.php");
 
@@ -20,24 +22,18 @@ include("includes/header.php");
             </ul>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-12">
 
 
 
 
 
 
-        <?php
-
-            include("includes/sidebar.php");
-
-        ?>
-        </div>
 
 
 <!--- register starts here -->
 
-<div class="col-md-9">
+<div class="col-md-12">
     <div class="box">
         <div class="box-header">
             <center>
@@ -49,12 +45,12 @@ include("includes/header.php");
 
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" class="form-control" name="c_firstName" required>
+                    <input type="text" class="form-control" name="c_first" required>
                 </div>
 
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" class="form-control" name="c_lastName" required>
+                    <input type="text" class="form-control" name="c_last" required>
                 </div>
 
                 <div class="form-group">
@@ -118,3 +114,44 @@ include("includes/footer.php");
 <script src="js/bootstrap-337.min.js"></script>
 </body>
 </html>
+
+
+<?php 
+
+if(isset($_POST['register'])){
+
+    $c_first = $_POST['c_first'];
+    $c_last = $_POST['c_last'];
+    $c_email = $_POST['c_email'];
+    $c_pass = $_POST['c_pass'];
+    $c_address = $_POST['c_address'];
+    $c_postcode = $_POST['c_postcode'];
+    $c_country = $_POST['c_country'];
+    $c_image = $_FILES['c_image']['name'];
+    $c_image_tmp = $_FILES['c_image']['name'];
+    $c_ip = getRealIpUser();
+
+    move_uploaded_file($c_image_tmp, "customer_images/$c_image");
+    $insert_customer = "INSERT INTO customers (customer_first, customer_last,
+    customer_email, customer_pass, customer_address, customer_postcode, 
+    customer_country, customer_image, customer_ip)
+     values ('$c_first', '$c_last', '$c_email', '$c_pass', '$c_address', '$c_postcode', '$c_country', '$image', '$c_ip')";
+    $run_customer = mysqli_query($conn, $insert_customer);
+    $sel_cart = "SELECT * FROM cart WHERE ip_add='$c_ip'";
+    $run_cart = mysqli_query($conn, $sel_cart);
+    $check_cart = mysqli_num_rows($run_cart);
+
+    
+
+    if($check_cart>0) {
+        $_SESSION['customer_email']=$c_email;
+        echo "<script>alert('YOU HAVE BEEN REGISTERED SUCCESSFULLY')</script>";
+        echo "<script>window.open('checkout.php','_self')</script>";
+    }
+    else {
+        $_SESSION['customer_email']=$c_email;
+        echo "<script>alert('YOU HAVE BEEN REGISTERED SUCCESSFULLY')</script>";
+        echo "<script>window.open('index.php','_self')</script>";
+    }
+}
+?>

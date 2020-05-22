@@ -1,5 +1,15 @@
 <?php
-include("includes/db.php");
+
+if(!isset($_SESSION['admin_email'])) {
+    echo "
+
+    <script>window.open('login.php','_self')</script>
+
+
+    ";
+} 
+else {
+
 ?>
 
 
@@ -12,11 +22,7 @@ include("includes/db.php");
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>INSERT PRODUCT</title>
 
-<script src="https://kit.fontawesome.com/3d20db6269.js" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="css/bootstrap-337.min.css">
-<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="css/style.css">
 
 
 
@@ -72,7 +78,7 @@ include("includes/db.php");
 
                                 <?php 
                                 $get_p_cats = "SELECT * FROM product_categories";
-                                $run_p_cats = mysqli_query($con, $get_p_cats);
+                                $run_p_cats = mysqli_query($conn, $get_p_cats);
 
                                 while ($row_p_cats=mysqli_fetch_array($run_p_cats)) {
                                     $p_cat_id = $row_p_cats['p_cat_id'];
@@ -108,7 +114,7 @@ include("includes/db.php");
 
                                 <?php 
                                 $get_cat = "SELECT * FROM categories";
-                                $run_cat = mysqli_query($con, $get_cat);
+                                $run_cat = mysqli_query($conn, $get_cat);
 
                                 while ($row_cat=mysqli_fetch_array($run_cat)) {
                                     $cat_id = $row_cat['cat_id'];
@@ -221,8 +227,7 @@ include("includes/db.php");
     </div>
 </div>
 
-<script src="js/jquery-331.min.js"></script>
-<script src="js/bootstrap-337.min.js"></script>
+
 
 <script src="js/tinymce/tinymce.min.js"></script>
 <script>tinymce.init({ selector:'textarea' });</script>
@@ -260,12 +265,12 @@ if(isset($_POST['submit'])){
     
     $insert_product = "INSERT INTO products (p_cat_id,cat_id,date,product_title,product_img1,product_img2,product_img3,product_price,product_keywords,product_desc) values ('$product_cat','$cat',NOW(),'$product_title','$product_img1','$product_img2','$product_img3','$product_price','$product_keywords','$product_desc')";
     
-    $run_product = mysqli_query($con,$insert_product);
+    $run_product = mysqli_query($conn,$insert_product);
     
     if($run_product){
         
         echo "<script>alert('Product has been inserted sucessfully')</script>";
-        echo "<script>window.open('insert_product.php','_self')</script>";
+        echo "<script>window.open('index.php?view_products','_self')</script>";
         
     }
     
@@ -273,4 +278,8 @@ if(isset($_POST['submit'])){
 
 ?>
 
+<?php
 
+}
+
+?>

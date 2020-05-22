@@ -35,7 +35,7 @@
 
 $get_p_cats = "SELECT * FROM product_categories";
 
-$run_p_cats = mysqli_query($con, $get_p_cats);
+$run_p_cats = mysqli_query($conn, $get_p_cats);
 
 while($row_p_cats=mysqli_fetch_array($run_p_cats)) {
 

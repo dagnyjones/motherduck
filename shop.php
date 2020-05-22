@@ -87,13 +87,15 @@ else
 
 $page=1;
 
+}
+
 
 
 $start_from = ($page-1) * $per_page;
 
 $get_products = "SELECT * FROM products ORDER BY 1 DESC LIMIT $start_from, $per_page";
 
-$run_products = mysqli_query($con, $get_products);
+$run_products = mysqli_query($conn, $get_products);
 
 while($row_products=mysqli_fetch_array($run_products)){
 
@@ -132,9 +134,9 @@ $$pro_price
 
 </p>
 
-<p class='button'>
+<p class='buttons'>
 
-<a class='btn btn-default' href='details.php?pro_id=$pro_id'>
+<a class='btn btn-primary' href='details.php?pro_id=$pro_id'>
 
 VIEW DETAILS
 
@@ -160,7 +162,7 @@ ADD TO CART
 
 ";
 
-}
+
 
 }
 
@@ -184,8 +186,41 @@ ADD TO CART
 
 <?php
 
-}
+$query = "SELECT * FROM products";
+$result = mysqli_query($conn,$query);
+$total_records = mysqli_num_rows($result);
+$total_pages = ceil($total_records / $per_page);
 
+echo "
+
+<li>
+<a href='shop.php?page=1'> ".'First Page'." </a>
+</li>
+
+
+";
+
+for($i=1; $i<=$total_pages; $i++){
+
+echo"
+
+<li>
+<a href='shop.php?page=".$i."'>".$i."</a>
+</li>
+
+";
+
+};
+
+echo "
+
+<li>
+<a href='shop.php?page=$total_pages'> ".'Last Page'." </a>
+</li>
+
+
+";
+}
 }
 
 ?>
@@ -193,6 +228,16 @@ ADD TO CART
 </ul>
 
 </center>
+
+
+    <?php 
+
+    getpcatPro();
+    getcatpro();
+    
+    
+    ?>
+
 
         
 </div>

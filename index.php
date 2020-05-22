@@ -24,7 +24,7 @@ include("includes/header.php");
 
 $get_slides = "SELECT * FROM slider LIMIT 0,1";
 
-$run_slides = mysqli_query($con, $get_slides);
+$run_slides = mysqli_query($conn, $get_slides);
 
 while($row_slides=mysqli_fetch_array($run_slides)){
     
@@ -42,7 +42,7 @@ while($row_slides=mysqli_fetch_array($run_slides)){
 //second + 3 + 4 slide//
 $get_slides = "SELECT * FROM slider LIMIT 1,3";
 
-$run_slides = mysqli_query($con, $get_slides);
+$run_slides = mysqli_query($conn, $get_slides);
 
 while($row_slides=mysqli_fetch_array($run_slides)){
     
@@ -80,42 +80,152 @@ while($row_slides=mysqli_fetch_array($run_slides)){
 </div>
 
 
+<div id="hot">
+    <div class="box">
+        <div class="container">
+            <div class="col-md-12">
+                <h2>
+                    NEWS FROM US
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="advantage">
     <div class="container">
         <div class="same-height-row">
 
-            <div class="col-sm-4">
-                <div class="box same-height">
-                    <h3><a href="#">
-                        We love our customer
-                    </a></h3>
-                    <p>
-                        we know the best possible service
-                    </p>
-                </div>
+
+
+        
+
+
+        <div class="col-sm-4">
+                
+                    
+
+                    <?php
+
+                    $get_news = "SELECT * FROM news LIMIT 0,1";
+
+                    $run_news = mysqli_query($conn, $get_news);
+
+                    while($row_news=mysqli_fetch_array($run_news)) {
+                        $news_title = $row_news['news_title'];
+                        $news_sub_title = $row_news['news_sub_title'];
+                        $news_desc = $row_news['news_desc'];
+                        $news_img1 = $row_news['news_img1'];
+
+                        echo "
+
+                        <h3> $news_title </h3>
+                        <h5> $news_sub_title </h5>
+                        <p> $news_desc </p>
+    
+                        
+                        ";
+
+
+                    }
+
+
+
+                    ?>
+
+        </div>
+
+<div class="col-sm-4">
+
+
+<?php
+
+                $get_news = "SELECT * FROM news LIMIT 1,1";
+
+                    $run_news = mysqli_query($conn, $get_news);
+
+                    while($row_news=mysqli_fetch_array($run_news)) {
+                        $news_title = $row_news['news_title'];
+                        $news_sub_title = $row_news['news_sub_title'];
+                        $news_desc = $row_news['news_desc'];
+                        $news_img1 = $row_news['news_img1'];
+
+                        echo "
+
+                        <h3> $news_title </h3>
+                        <h5> $news_sub_title </h5>
+                        <p> $news_desc </p>
+    
+                        
+                        ";
+
+
+                    }
+
+?>
+
+
+</div>
+
+<div class="col-sm-4">
+
+
+<?php
+
+                $get_news = "SELECT * FROM news LIMIT 2,2";
+
+                    $run_news = mysqli_query($conn, $get_news);
+
+                    while($row_news=mysqli_fetch_array($run_news)) {
+                        $news_title = $row_news['news_title'];
+                        $news_sub_title = $row_news['news_sub_title'];
+                        $news_desc = $row_news['news_desc'];
+                        $news_img1 = $row_news['news_img1'];
+
+                        echo "
+
+                        <h3> $news_title </h3>
+                        <h5> $news_sub_title </h5>
+                        <p> $news_desc </p>
+    
+                        
+                        ";
+
+
+                    }
+
+?>
+
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+                        
+                    
+                    
+       
+
+
+
+
+
+</div>
             </div>
 
-            <div class="col-sm-4">
-                <div class="box same-height">
-                    <h3><a href="#">
-                        We love our customer
-                    </a></h3>
-                    <p>
-                        we know the best possible service
-                    </p>
-                </div>
-            </div>
 
-            <div class="col-sm-4">
-                <div class="box same-height">
-                    <h3><a href="#">
-                        We love our customer
-                    </a></h3>
-                    <p>
-                        we know the best possible service
-                    </p>
-                </div>
-            </div>
+
+
+
+            
+
+            
 
 
         </div>
@@ -127,7 +237,7 @@ while($row_slides=mysqli_fetch_array($run_slides)){
         <div class="container">
             <div class="col-md-12">
                 <h2>
-                    our latest products
+                   OUR LATEST PRODUCTS
                 </h2>
             </div>
         </div>

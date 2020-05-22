@@ -134,9 +134,9 @@
 }
 
 .btn-primary {
-    color: rgb(255,255,255);
-    background: rgb(79, 191, 168);
-    border-color: rgb(65, 179, 156);
+    color: white;
+    background: var(--orange);
+    border-color: var(--orange);
 }
 
 #search .navbar-form {
@@ -177,7 +177,7 @@
     border: solider 1px black;
     box-sizing: border-box;
     padding: 20px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    
 }
 
 #advantage .box h3 {
@@ -187,6 +187,11 @@
     text-transform: uppercase;
     z-index: 2;
 }
+
+
+
+
+
 
 #advantage .box h3 a {
     color: var(--orange);
@@ -210,6 +215,12 @@
     box-sizing: border-box;
     padding: 20px;
     
+
+
+}
+
+#news {
+    background: black;
 }
 
 /* latest products */
@@ -485,5 +496,75 @@ c {
     vertical-align: bottom;   
 }
 
+
+  
+  
+  
+  .contact-form {
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  .contact-form input {
+    width: 94%;
+    height: 40px;
+    padding: 0 3%;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #6B9AC1;
+    
+    font-size: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+    color: #FFFFFF;
+  }
+  
+  .contact-form textarea {
+    width: 94%;
+    height: 200px;
+    padding: 10px 3%;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #6B9AC1;
+    
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #FFFFFF;
+    resize: none;
+  }
+  
+  .contact-form button {
+    display: block;
+    width: 40%;
+    height: 40px;
+    margin: 10px auto 0;
+    border: none;
+    border-radius: 4px;
+   
+    font-size: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    color: #FFFFFF;
+    
+    cursor: pointer;
+  }
+  
+  .contact-form button:hover {
+    box-shadow: 0px 5px 0px 0px transparent;
+    position: relative;
+    top: 5px;
+  }
+  
+  
+  
+  input:focus, textarea:focus {
+    box-shadow: 0px 3px 0px 0px transparent;
+    position: relative;
+    top: 3px;
+  }
+  
 
 
